@@ -88,3 +88,21 @@ export const addItemToTree = (
     }
   }
 };
+
+export const removeItemFromTree = (
+  tree: DataNode[],
+  keyToRemove: React.Key
+) => {
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+    
+    if (node.key === keyToRemove) {
+      tree.splice(i, 1);
+      return;
+    }
+
+    if (node.children) {
+      removeItemFromTree(node.children, keyToRemove);
+    }
+  }
+};

@@ -1,10 +1,10 @@
-import { HolderOutlined, PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, HolderOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import type { DataNode } from "antd/es/tree";
 import * as React from "react";
 import { ChangeEventHandler, useState } from "react";
 import { useTreeStore } from "../stores/useTreeStore";
-import { addItemToTree } from "../utils/tree";
+import { addItemToTree, removeItemFromTree } from "../utils/tree";
 
 type NodeItemProps = {
   data: DataNode;
@@ -39,6 +39,16 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
     });
   };
 
+  const handleDelete = (nodeData: DataNode) => {
+    setGData((prev) => {
+      const updatedTree = [...prev];
+
+      removeItemFromTree(updatedTree, nodeData.key);
+
+      return updatedTree;
+    });
+  };
+
   return (
     <div
       className="flex items-center justify-between gap-2 p-2"
@@ -55,6 +65,16 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
 
       {hover === nodeData.key && (
         <div className="flex gap-2">
+          {nodeData.key !== "0-0" && (
+            <Button
+              shape="circle"
+              icon={<DeleteOutlined />}
+              size={"medium"}
+              onClick={() => handleDelete(nodeData)}
+              disabled={nodeData.disabled}
+            />
+          )}
+
           <Button
             shape="circle"
             icon={<PlusOutlined />}
