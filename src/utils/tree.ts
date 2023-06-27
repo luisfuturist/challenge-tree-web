@@ -65,3 +65,26 @@ export const moveItem = (data: DataNode[], info: ItemMoveInfo) => {
     }
   }
 };
+
+export const addItemToTree = (
+  tree: DataNode[],
+  parentNodeKey: React.Key,
+  newItem: DataNode | ((i: number) => DataNode)
+) => {
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+
+    if (node.key === parentNodeKey) {
+      if (!node.children) {
+        node.children = [];
+      }
+
+      node.children.push(typeof newItem === "function" ? newItem(i) : newItem);
+      return;
+    }
+
+    if (node.children) {
+      addItemToTree(node.children, parentNodeKey, newItem);
+    }
+  }
+};
