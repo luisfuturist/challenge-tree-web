@@ -1,10 +1,18 @@
-import { DeleteOutlined, HolderOutlined, LockOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import {
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+  HolderOutlined,
+  LockOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import { Button, Input, Modal } from "antd";
 import type { DataNode } from "antd/es/tree";
 import * as React from "react";
 import { ChangeEventHandler, useState } from "react";
 import { useTreeStore } from "../stores/useTreeStore";
 import { addItemToTree, removeItemFromTree } from "../utils/tree";
+
+const { confirm } = Modal;
 
 type NodeItemProps = {
   data: DataNode;
@@ -40,13 +48,27 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
   };
 
   const handleDelete = (nodeData: DataNode) => {
-    setGData((prev) => {
-      const updatedTree = [...prev];
+    const deleteItem = () => {
+      setGData((prev) => {
+        const updatedTree = [...prev];
 
-      removeItemFromTree(updatedTree, nodeData.key);
+        removeItemFromTree(updatedTree, nodeData.key);
 
-      return updatedTree;
-    });
+        return updatedTree;
+      });
+    };
+
+    if ((nodeData.children || []).length > 0) {
+      confirm({
+        icon: <ExclamationCircleOutlined />,
+        title: `Você irá apagar o nó '${nodeData.title}' e todos os seus filhos.`,
+        onOk() {
+          deleteItem();
+        },
+      });
+    } else {
+      deleteItem();
+    }
   };
 
   return (
