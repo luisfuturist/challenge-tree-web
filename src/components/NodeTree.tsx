@@ -56,7 +56,7 @@ const NodeTree: React.FC = () => {
           icon={<CaretDownOutlined />}
         />
       }
-      draggable={true}
+      draggable={(nodeData) => nodeData.key !== "0-0"}
       onDragEnter={handleDragEnter}
       onDrop={handleDrop}
       expandedKeys={expandedKeys}

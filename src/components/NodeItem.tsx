@@ -55,7 +55,7 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
       onMouseEnter={() => setHover(nodeData.key)}
       onMouseLeave={() => setHover(null)}
     >
-      <HolderOutlined className="cursor-move" />
+      {nodeData.key !== "0-0" && <HolderOutlined className="cursor-move" />}
 
       <Input
         value={nodeData.title as string}
