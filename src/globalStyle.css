@@ -1,0 +1,44 @@
+.ant-tree-treenode {
+  align-items: center !important;
+}
+
+.ant-tree-node-content-wrapper, .ant-tree-title {
+  width: 100%;
+}
+
+.ant-tree-node-content-wrapper {
+  margin-left: 0.25em !important;
+}
+
+.ant-tree-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: white  !important;
+}
+
+.ant-tree-switcher-leaf-line::before {
+  height: 66px !important;
+  z-index: -1;
+}
+
+.ant-tree-switcher-leaf-line::after {
+  height: 22px !important;
+}
+
+.ant-tree-draggable-icon {
+  width: 0 !important;
+}
+
+.ant-tree-draggable-icon * {
+  opacity: 0;
+}
+
+.ant-tree-treenode {
+  width: 100% !important;
+}
+
+.ant-input-borderless {
+  border: 1px solid transparent !important;
+}
