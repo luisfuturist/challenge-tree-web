@@ -77,7 +77,9 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
       onMouseEnter={() => setHover(nodeData.key)}
       onMouseLeave={() => setHover(null)}
     >
-      {nodeData.key !== "0-0" && <HolderOutlined className="cursor-move" />}
+      {nodeData.key !== "0-0" && (
+        <HolderOutlined className={!nodeData.disabled ? "cursor-move" : ""} />
+      )}
 
       {nodeData.disabled && <LockOutlined />}
 
