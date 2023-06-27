@@ -41,6 +41,11 @@ export const treeData: DataNode[] = [
           },
         ],
       },
+      {
+        title: "node 3",
+        key: "0-3",
+        disabled: true,
+      },
     ],
   },
 ];

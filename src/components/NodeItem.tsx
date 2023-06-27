@@ -1,4 +1,4 @@
-import { DeleteOutlined, HolderOutlined, PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, HolderOutlined, LockOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import type { DataNode } from "antd/es/tree";
 import * as React from "react";
@@ -57,10 +57,13 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
     >
       {nodeData.key !== "0-0" && <HolderOutlined className="cursor-move" />}
 
+      {nodeData.disabled && <LockOutlined />}
+
       <Input
         value={nodeData.title as string}
         onChange={handleChange}
         bordered={false}
+        disabled={nodeData.disabled}
       />
 
       {hover === nodeData.key && (
@@ -83,6 +86,7 @@ const NodeItem = ({ data: nodeData }: NodeItemProps) => {
               e.preventDefault();
               handleAdd(nodeData);
             }}
+            disabled={nodeData.disabled}
           />
         </div>
       )}
