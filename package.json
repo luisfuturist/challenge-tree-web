@@ -1,5 +1,5 @@
 {
-  "name": "challenge-tree",
+  "name": "challenge-tree-web",
   "private": true,
   "version": "0.5.1",
   "type": "module",
@@ -29,15 +29,5 @@
     "typescript": "^5.0.2",
     "unocss": "^0.53.4",
     "vite": "^4.3.9"
-  },
-  "author": "Luis Float <contact@luisfloat.com> (https://luisfloat.com)",
-  "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/luisfloat/challenge-tree.git"
-  },
-  "homepage": "https://github.com/luisfloat/challenge-tree#readme",
-  "bugs": {
-    "url": "https://github.com/luisfloat/challenge-tree/issues"
   }
 }
